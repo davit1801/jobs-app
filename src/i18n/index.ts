@@ -2,7 +2,10 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
-export const SUPPORTED_LANGUAGES = ['ka', 'en'];
+import authKa from '@/i18n/ka/auth.json';
+import authEn from '@/i18n/en/auth.json';
+
+export const SUPPORTED_LANGUAGES = ['en', 'ka'];
 
 const options = {
   order: ['path', 'htmlTag'],
@@ -18,12 +21,12 @@ i18n
     resources: {
       en: {
         translation: {
-          'Welcome to React': 'Welcome to React and react-i18next',
+          auth: authEn,
         },
       },
       ka: {
         translation: {
-          'Welcome to React': 'კეთილი იყოს',
+          auth: authKa,
         },
       },
     },
@@ -34,3 +37,5 @@ i18n
     },
     detection: options,
   });
+
+document.documentElement.lang = i18n.language;
