@@ -1,9 +1,24 @@
 import { supabase } from '@/supabase';
-import { UserAuthPayload } from '@/supabase/auth/index.types';
+import {
+  UserSignInPayload,
+  UserSignUpPayload,
+} from '@/supabase/auth/index.types';
 
-export const signupUser = async ({ email, password }: UserAuthPayload) => {
+export const signupUser = async ({
+  email,
+  password,
+  username,
+}: UserSignUpPayload) => {
   try {
-    const { data, error } = await supabase.auth.signUp({ email, password });
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          username,
+        },
+      },
+    });
 
     if (error) {
       console.error('Registration error:', error.message);
@@ -17,7 +32,7 @@ export const signupUser = async ({ email, password }: UserAuthPayload) => {
   }
 };
 
-export const signInUser = async ({ email, password }: UserAuthPayload) => {
+export const signInUser = async ({ email, password }: UserSignInPayload) => {
   try {
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
@@ -56,10 +71,7 @@ export const getSession = async () => {
       error,
     } = await supabase.auth.getSession();
 
-    if (error) {
-      console.error('Logout error:', error.message);
-      throw error;
-    }
+    if (error) throw error;
 
     return session;
   } catch (error) {

@@ -1,8 +1,14 @@
 import { Session, User, WeakPassword } from '@supabase/supabase-js';
 
-export type UserAuthPayload = {
+export type UserSignInPayload = {
   email: string;
   password: string;
+};
+
+export type UserSignUpPayload = {
+  email: string;
+  password: string;
+  username: string;
 };
 
 export type UserSignInResponse = {

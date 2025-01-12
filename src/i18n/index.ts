@@ -4,6 +4,10 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 
 import authKa from '@/i18n/ka/auth.json';
 import authEn from '@/i18n/en/auth.json';
+import footerKa from '@/i18n/ka/footer.json';
+import footerEn from '@/i18n/en/footer.json';
+import navEn from '@/i18n/en/navigation.json';
+import navKa from '@/i18n/ka/navigation.json';
 
 export const SUPPORTED_LANGUAGES = ['en', 'ka'];
 
@@ -22,11 +26,15 @@ i18n
       en: {
         translation: {
           auth: authEn,
+          footer: footerEn,
+          navigation: navEn,
         },
       },
       ka: {
         translation: {
           auth: authKa,
+          footer: footerKa,
+          navigation: navKa,
         },
       },
     },

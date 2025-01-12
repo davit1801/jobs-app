@@ -1,8 +1,9 @@
 import { AUTH_MUTATION_KEYS } from '@/react-query/mutation/auth/enum';
 import { signInUser, signOutUser, signupUser } from '@/supabase/auth';
 import {
-  UserAuthPayload,
+  UserSignInPayload,
   UserSignInResponse,
+  UserSignUpPayload,
   UserSignUpResponse,
 } from '@/supabase/auth/index.types';
 import { AuthError } from '@supabase/supabase-js';
@@ -17,13 +18,13 @@ export const useUserSignIn = <T = UserSignInResponse>({
   mutationOptions = {},
 }: {
   mutationOptions?: Omit<
-    UseMutationOptions<T, AuthError, UserAuthPayload>,
+    UseMutationOptions<T, AuthError, UserSignInPayload>,
     'mutationKey'
   >;
-} = {}): UseMutationResult<T, AuthError, UserAuthPayload> => {
-  return useMutation<T, AuthError, UserAuthPayload>({
+} = {}): UseMutationResult<T, AuthError, UserSignInPayload> => {
+  return useMutation<T, AuthError, UserSignInPayload>({
     mutationKey: [AUTH_MUTATION_KEYS.SIGNIN],
-    mutationFn: signInUser as MutationFunction<T, UserAuthPayload>,
+    mutationFn: signInUser as MutationFunction<T, UserSignInPayload>,
     ...mutationOptions,
   });
 };
@@ -32,13 +33,13 @@ export const useUserSignUp = <T = UserSignUpResponse>({
   mutationOptions = {},
 }: {
   mutationOptions?: Omit<
-    UseMutationOptions<T, AuthError, UserAuthPayload>,
+    UseMutationOptions<T, AuthError, UserSignUpPayload>,
     'mutationKey'
   >;
-} = {}): UseMutationResult<T, AuthError, UserAuthPayload> => {
-  return useMutation<T, AuthError, UserAuthPayload>({
+} = {}): UseMutationResult<T, AuthError, UserSignUpPayload> => {
+  return useMutation<T, AuthError, UserSignUpPayload>({
     mutationKey: [AUTH_MUTATION_KEYS.SIGNUP],
-    mutationFn: signupUser as MutationFunction<T, UserAuthPayload>,
+    mutationFn: signupUser as MutationFunction<T, UserSignUpPayload>,
     ...mutationOptions,
   });
 };
