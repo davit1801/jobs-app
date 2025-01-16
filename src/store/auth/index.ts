@@ -1,4 +1,4 @@
-import { UserProfileTypes } from '@/supabase/profiles/types';
+import { UserProfileTypes } from '@/supabase/profiles/index.types';
 import { Session } from '@supabase/supabase-js';
 import { atom } from 'jotai';
 

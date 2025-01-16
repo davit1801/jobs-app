@@ -8,7 +8,6 @@ export type UserSignInPayload = {
 export type UserSignUpPayload = {
   email: string;
   password: string;
-  username: string;
 };
 
 export type UserSignInResponse = {

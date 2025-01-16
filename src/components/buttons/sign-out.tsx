@@ -1,19 +1,28 @@
+import useI18nLang from '@/hooks/use-i18n-lang';
+import { useToast } from '@/hooks/use-toast';
 import { useUserSignOut } from '@/react-query/mutation/auth';
-import { MAIN_PATHS } from '@/router/routes/main/index.types';
-import i18next from 'i18next';
+import { MAIN_PATHS } from '@/router/routes/main/index.enum';
 import React from 'react';
 import { useNavigate } from 'react-router';
 
 const SignOutButton: React.FC = () => {
-  const lang = i18next.language;
+  const { t, lang } = useI18nLang();
   const navigate = useNavigate();
+  const { toast } = useToast();
 
   const { mutate } = useUserSignOut({
     mutationOptions: {
       onSuccess: () => {
         navigate(`${MAIN_PATHS.HOME}${lang}`);
+        toast({ description: t('toast.success.sign-out') });
       },
-      onError: (error) => console.error('Login failed:', error),
+      onError: (error) => {
+        console.error('Login failed:', error);
+        toast({
+          description: t('toast.error.sign-out'),
+          variant: 'destructive',
+        });
+      },
     },
   });
 

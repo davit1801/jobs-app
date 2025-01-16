@@ -1,11 +1,18 @@
+import { Spinner } from '@/components/ui/spinner';
 import MainLayout from '@/layouts/main';
 import RootLayout from '@/layouts/root';
-import LangGuard from '@/router/guards/LangGuard';
+import LangGuard from '@/router/guards/lang-guard';
+import { ACCOUNT_ROUTES } from '@/router/routes/account';
+import { ACCOUNT_PATHS } from '@/router/routes/account/index.enum';
 import { AUTH_ROUTES } from '@/router/routes/auth';
 import { MAIN_ROUTES } from '@/router/routes/main';
+import { VACANCY_ROUTES } from '@/router/routes/vacancy';
+import { VACANCY_PATHS } from '@/router/routes/vacancy/index.enum';
 import i18next from 'i18next';
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router';
+
+const NotFoundPageView = lazy(() => import('@/pages/not-found/index'));
 
 const AppRoutes: React.FC = () => {
   return (
@@ -16,10 +23,23 @@ const AppRoutes: React.FC = () => {
           element={<Navigate to={`/${i18next.language || 'en'}`} replace />}
         />
         <Route path=":lang" element={<LangGuard />}>
-          <Route element={<MainLayout />}>{MAIN_ROUTES}</Route>
+          <Route element={<MainLayout />}>
+            {MAIN_ROUTES}
+            <Route path={VACANCY_PATHS.VACANCY}>{...VACANCY_ROUTES}</Route>
+            <Route path={ACCOUNT_PATHS.ACCOUNT}>{...ACCOUNT_ROUTES}</Route>
+          </Route>
           {...AUTH_ROUTES}
         </Route>
       </Route>
+
+      <Route
+        path="*"
+        element={
+          <Suspense fallback={<Spinner />}>
+            <NotFoundPageView />
+          </Suspense>
+        }
+      />
     </Routes>
   );
 };

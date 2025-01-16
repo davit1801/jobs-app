@@ -1,0 +1,17 @@
+export const WORK_CATEGORY_VALUES = [
+  { id: '1', name: 'Software Development', value: 'software-dev' },
+  { id: '2', name: 'Design & Creative', value: 'design-creative' },
+  { id: '3', name: 'Marketing & Sales', value: 'marketing-sales' },
+  { id: '4', name: 'Customer Service', value: 'custumer-service' },
+  { id: '5', name: 'Science & Research', value: 'science-research' },
+  { id: '6', name: 'Business & Management', value: 'business-managment' },
+  { id: '7', name: 'Engineering & Architecture', value: 'engineering-arch' },
+  { id: '8', name: 'Data Science & Analytics', value: 'data-analytics' },
+  { id: '9', name: 'Healthcare & Medicine', value: 'health-medicine' },
+  { id: '10', name: 'Education & Training', value: 'edu-training' },
+  { id: '11', name: 'IT Technologies', value: 'it-tech' },
+  { id: '12', name: 'Finance & Accounting', value: 'finance-accounting' },
+  { id: '13', name: 'Human Resources', value: 'hr' },
+  { id: '14', name: 'Transportation & Logistics', value: 'logistics' },
+  { id: '15', name: 'Other', value: 'other' },
+];

@@ -1,5 +1,5 @@
 import useI18nLang from '@/hooks/use-i18n-lang';
-import { MAIN_PATHS } from '@/router/routes/main/index.types';
+import { MAIN_PATHS } from '@/router/routes/main/index.enum';
 import React from 'react';
 import { NavLink, NavLinkRenderProps } from 'react-router';
 

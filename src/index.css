@@ -113,6 +113,7 @@
     --chart-5: 210 20% 90%;
   }
 }
+
 @layer base {
   * {
     @apply border-border;

@@ -10,6 +10,8 @@ import { useAtomValue } from 'jotai';
 import { sessionAtom } from '@/store/auth';
 import ProfileAvatar from '@/components/buttons/profile-avatar';
 import useI18nLang from '@/hooks/use-i18n-lang';
+import { VACANCY_PATHS } from '@/router/routes/vacancy/index.enum';
+import { AUTH_PATHS } from '@/router/routes/auth/index.enum';
 
 const Header = () => {
   const { lang } = useI18nLang();
@@ -29,7 +31,11 @@ const Header = () => {
           <div className="flex items-center gap-3">
             {session && (
               <Button asChild>
-                <Link to={`/${lang}/create-vacancy`}>Add vacancy</Link>
+                <Link
+                  to={`/${lang}/${VACANCY_PATHS.VACANCY}/${VACANCY_PATHS.CREATE}`}
+                >
+                  Add vacancy
+                </Link>
               </Button>
             )}
 
@@ -39,7 +45,7 @@ const Header = () => {
               <ProfileAvatar />
             ) : (
               <Button className="hidden px-5 md:block" asChild>
-                <Link to={`/${lang}/login`}>Login</Link>
+                <Link to={`/${lang}/${AUTH_PATHS.SIGN_IN}`}>Login</Link>
               </Button>
             )}
 

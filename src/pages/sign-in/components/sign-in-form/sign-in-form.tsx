@@ -1,4 +1,4 @@
-import ControlledField from '@/components/form/controlled-field';
+import ControlledInputField from '@/components/form/controlled-input-field';
 import { Button } from '@/components/ui/button';
 import useI18nLang from '@/hooks/use-i18n-lang';
 import { SignInFormSchema } from '@/pages/sign-in/schema';
@@ -12,7 +12,7 @@ import { useUserSignIn } from '@/react-query/mutation/auth';
 import { Label } from '@/components/ui/label';
 import InputFieldError from '@/components/errors/Input-field-error';
 import { useToast } from '@/hooks/use-toast';
-import { MAIN_PATHS } from '@/router/routes/main/index.types';
+import { MAIN_PATHS } from '@/router/routes/main/index.enum';
 import { AUTH_PATHS } from '@/router/routes/auth/index.enum';
 
 const SignInForm: React.FC = () => {
@@ -31,10 +31,13 @@ const SignInForm: React.FC = () => {
     mutationOptions: {
       onSuccess: () => {
         navigate(`${MAIN_PATHS.HOME}${lang}`);
-        toast({ description: 'You succesfully Signed In' });
+        toast({ description: t('toast.success.sing-in') });
       },
       onError: () => {
-        toast({ description: 'Failed to Signed In', variant: 'destructive' });
+        toast({
+          description: t('toast.error.sing-in'),
+          variant: 'destructive',
+        });
       },
     },
   });
@@ -49,7 +52,7 @@ const SignInForm: React.FC = () => {
         <Label htmlFor="email" className="block text-sm/6 font-medium">
           {t('auth.email')}
         </Label>
-        <ControlledField
+        <ControlledInputField
           name="email"
           autoComplete="email"
           control={control}
@@ -62,7 +65,7 @@ const SignInForm: React.FC = () => {
           {t('auth.password')}
         </Label>
 
-        <ControlledField
+        <ControlledInputField
           name="password"
           type="password"
           autoComplete="current-password"

@@ -1,5 +1,5 @@
 import InputFieldError from '@/components/errors/Input-field-error';
-import ControlledField from '@/components/form/controlled-field';
+import ControlledInputField from '@/components/form/controlled-input-field';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
@@ -23,19 +23,19 @@ const RegisterForm: React.FC = () => {
     defaultValues: {
       email: '',
       password: '',
-      username: '',
+      confirmPassword: '',
     },
   });
 
   const { mutate, isPending, isError } = useUserSignUp({
     mutationOptions: {
       onSuccess: () => {
-        navigate(`/${lang}${AUTH_PATHS.SIGN_IN}`);
-        toast({ description: 'You succesfuly sign up', variant: 'default' });
+        navigate(`/${lang}/${AUTH_PATHS.SIGN_IN}`);
+        toast({ description: t('toast.success.sign-up'), variant: 'default' });
       },
       onError: () => {
         toast({
-          description: 'Failed to create account',
+          description: t('toast.error.sign-up'),
           variant: 'destructive',
         });
       },
@@ -43,8 +43,7 @@ const RegisterForm: React.FC = () => {
   });
 
   const handleFormSubmit: SubmitHandler<SignUpFormValues> = (formFields) => {
-    console.log(formFields);
-    mutate(formFields);
+    mutate({ password: formFields.password, email: formFields.email });
   };
 
   return (
@@ -53,7 +52,7 @@ const RegisterForm: React.FC = () => {
         <Label htmlFor="email" className="block text-sm/6 font-medium">
           {t('auth.email')}
         </Label>
-        <ControlledField
+        <ControlledInputField
           name="email"
           autoComplete="email"
           control={control}
@@ -62,22 +61,27 @@ const RegisterForm: React.FC = () => {
       </div>
 
       <div className="flex flex-col gap-2">
-        <Label htmlFor="username" className="block text-sm/6 font-medium">
-          username
+        <Label htmlFor="email" className="block text-sm/6 font-medium">
+          {t('auth.password')}
         </Label>
-        <ControlledField
-          name="username"
-          autoComplete="username"
+        <ControlledInputField
+          name="password"
+          type="password"
+          autoComplete="new-password"
           control={control}
+          placeholder="••••••••"
         />
       </div>
 
       <div className="flex flex-col gap-2">
-        <Label htmlFor="email" className="block text-sm/6 font-medium">
-          {t('auth.password')}
+        <Label
+          htmlFor="confirmPassword"
+          className="block text-sm/6 font-medium"
+        >
+          {t('auth.confirm-pass')}
         </Label>
-        <ControlledField
-          name="password"
+        <ControlledInputField
+          name="confirmPassword"
           type="password"
           autoComplete="new-password"
           control={control}

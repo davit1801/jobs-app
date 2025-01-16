@@ -1,0 +1,33 @@
+{
+  "year": "Year",
+  "work-type": {
+    "full-time": "Full-time",
+    "part-time": "Part-time",
+    "shifts": "Shifts"
+  },
+  "experience": {
+    "0-2": "0-2 Year",
+    "2-5": "2-5 Year",
+    "5-10": "5-10 Year",
+    "10": "10+ Year"
+  },
+  "category": {
+    "software-dev": "Software Development",
+    "design-creative": "Design & Creative",
+    "marketing-sales": "Marketing & Sales",
+    "custumer-service": "Customer Service",
+    "science-research": "Science & Research",
+    "business-managment": "Business & Management",
+    "engineering-arch": "Engineering & Architecture",
+    "data-analytics": "Data Science & Analytics",
+    "health-medicine": "Healthcare & Medicine",
+    "edu-training": "Education & Training",
+    "it-tech": "IT Technologies",
+    "finance-accounting": "Finance & Accounting",
+    "hr": "Human Resources",
+    "logistics": "Transportation & Logistics",
+    "other": "Other"
+  },
+  "about-company": "Company Info",
+  "posted": "Posted"
+}

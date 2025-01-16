@@ -2,13 +2,20 @@ import useAuth from '@/hooks/use-auth';
 import React from 'react';
 import { Outlet } from 'react-router';
 import { Toaster } from '@/components/ui/toaster';
+import { Spinner } from '@/components/ui/spinner';
 
 const RootLayout: React.FC = () => {
-  useAuth();
+  const { loading } = useAuth();
   return (
     <>
-      <Outlet />
-      <Toaster />
+      {loading ? (
+        <Spinner />
+      ) : (
+        <>
+          <Outlet />
+          <Toaster />
+        </>
+      )}
     </>
   );
 };

@@ -9,7 +9,7 @@ import {
   DropdownMenuItem,
 } from '@/components/ui/dropdown-menu';
 import useI18nLang from '@/hooks/use-i18n-lang';
-import { MAIN_PATHS } from '@/router/routes/main/index.types';
+import { MAIN_PATHS } from '@/router/routes/main/index.enum';
 import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,

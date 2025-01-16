@@ -4,20 +4,11 @@ import {
   UserSignUpPayload,
 } from '@/supabase/auth/index.types';
 
-export const signupUser = async ({
-  email,
-  password,
-  username,
-}: UserSignUpPayload) => {
+export const signupUser = async ({ email, password }: UserSignUpPayload) => {
   try {
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
-      options: {
-        data: {
-          username,
-        },
-      },
     });
 
     if (error) {

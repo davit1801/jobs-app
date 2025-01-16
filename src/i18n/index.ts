@@ -8,8 +8,17 @@ import footerKa from '@/i18n/ka/footer.json';
 import footerEn from '@/i18n/en/footer.json';
 import navEn from '@/i18n/en/navigation.json';
 import navKa from '@/i18n/ka/navigation.json';
+import vacancyEn from '@/i18n/en/vacancy.json';
+import vacancyKa from '@/i18n/ka/vacancy.json';
+import toastEn from '@/i18n/en/toast.json';
+import toastKa from '@/i18n/ka/toast.json';
+import notFoundKa from '@/i18n/ka/not-found.json';
+import notFoundEn from '@/i18n/en/not-found.json';
+import buttonEn from '@/i18n/en/button.json';
+import buttonKa from '@/i18n/ka/button.json';
 
 export const SUPPORTED_LANGUAGES = ['en', 'ka'];
+export const defaultLanguage = 'en';
 
 const options = {
   order: ['path', 'htmlTag'],
@@ -28,6 +37,10 @@ i18n
           auth: authEn,
           footer: footerEn,
           navigation: navEn,
+          vacancy: vacancyEn,
+          toast: toastEn,
+          notFound: notFoundEn,
+          button: buttonEn,
         },
       },
       ka: {
@@ -35,6 +48,10 @@ i18n
           auth: authKa,
           footer: footerKa,
           navigation: navKa,
+          vacancy: vacancyKa,
+          toast: toastKa,
+          notFound: notFoundKa,
+          button: buttonKa,
         },
       },
     },

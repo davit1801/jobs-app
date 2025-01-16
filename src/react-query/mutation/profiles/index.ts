@@ -1,6 +1,6 @@
 import { PROFILE_MUTATION_KEYS } from '@/react-query/mutation/profiles/enum';
 import { fillUserProfile } from '@/supabase/profiles';
-import { UserProfilePayload } from '@/supabase/profiles/types';
+import { UserProfilePayload } from '@/supabase/profiles/index.types';
 import { PostgrestError } from '@supabase/supabase-js';
 
 import {

@@ -1,5 +1,5 @@
 import { supabase } from '@/supabase';
-import { UserProfilePayload } from '@/supabase/profiles/types';
+import { UserProfilePayload } from '@/supabase/profiles/index.types';
 
 export const getUserProfile = async (id: string | undefined) => {
   if (!id) return null;

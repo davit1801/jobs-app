@@ -1,8 +1,7 @@
-import ProfileView from '@/pages/profile/views';
 import AboutPageViewLoader from '@/router/routes/main/about-us';
 import ContactPageViewLoader from '@/router/routes/main/contact';
 import HomePageViewLoader from '@/router/routes/main/home';
-import { MAIN_PATHS } from '@/router/routes/main/index.types';
+import { MAIN_PATHS } from '@/router/routes/main/index.enum';
 import { Route } from 'react-router';
 
 export const MAIN_ROUTES = [
@@ -17,5 +16,4 @@ export const MAIN_ROUTES = [
     element={<ContactPageViewLoader />}
     key={MAIN_PATHS.CONTACT}
   />,
-  <Route path="profile" element={<ProfileView />} key="profile" />,
 ];
