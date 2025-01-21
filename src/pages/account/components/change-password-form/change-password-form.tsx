@@ -41,7 +41,7 @@ const ChangePasswordForm: React.FC = () => {
     <form onSubmit={handleSubmit(handleFormSubmit)}>
       <div className="flex flex-col gap-4">
         <div className="flex w-full flex-col gap-3">
-          <Label>{t('settings.new-password')}</Label>
+          <Label htmlFor="new_password">{t('settings.new-password')}</Label>
           <ControlledInputField
             name="new_password"
             control={control}
@@ -50,7 +50,9 @@ const ChangePasswordForm: React.FC = () => {
         </div>
 
         <div className="flex w-full flex-col gap-3">
-          <Label>{t('settings.confirm-new-password')}</Label>
+          <Label htmlFor="confirm_password">
+            {t('settings.confirm-new-password')}
+          </Label>
           <ControlledInputField
             name="confirm_password"
             control={control}

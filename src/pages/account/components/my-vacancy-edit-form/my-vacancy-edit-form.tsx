@@ -81,7 +81,7 @@ const MyVacancyEditForm: React.FC<MyVacancyEditFormProps> = ({ vacancy }) => {
 
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-      <DialogTrigger>
+      <DialogTrigger aria-label="edit">
         <Pencil className="cursor-pointer" />
       </DialogTrigger>
       <DialogContent className="max-h-[80vh] overflow-y-auto">
@@ -93,18 +93,23 @@ const MyVacancyEditForm: React.FC<MyVacancyEditFormProps> = ({ vacancy }) => {
           <div className="flex flex-col gap-5 p-6">
             <div className="flex flex-col gap-5">
               <div className="flex flex-shrink-0 flex-col gap-3">
-                <Label>{t('vacancy.vacancy-category')}</Label>
+                <Label htmlFor="category">
+                  {t('vacancy.vacancy-category')}
+                </Label>
                 <Controller
                   name="category"
                   control={control}
                   render={({ field, fieldState: { error } }) => (
                     <Select onValueChange={field.onChange} value={field.value}>
-                      <SelectTrigger className="w-full">
+                      <SelectTrigger
+                        className="w-full"
+                        aria-label="select category"
+                      >
                         <SelectValue
                           placeholder={t('vacancy.placeholder.category')}
                         />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent id="category">
                         {WORK_CATEGORY_VALUES.map((value) => (
                           <SelectItem value={value.value} key={value.id}>
                             {t(`vacancy.category.${value.value}`)}
@@ -126,12 +131,15 @@ const MyVacancyEditForm: React.FC<MyVacancyEditFormProps> = ({ vacancy }) => {
                   control={control}
                   render={({ field, fieldState: { error } }) => (
                     <Select onValueChange={field.onChange} value={field.value}>
-                      <SelectTrigger className="w-full">
+                      <SelectTrigger
+                        className="w-full"
+                        aria-label="select work type"
+                      >
                         <SelectValue
                           placeholder={t('vacancy.placeholder.type')}
                         />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent id="work_type">
                         {WORK_TYPES_VALUES.map((value) => (
                           <SelectItem value={value.value} key={value.id}>
                             {t(`vacancy.work-type.${value.value}`)}
@@ -153,7 +161,10 @@ const MyVacancyEditForm: React.FC<MyVacancyEditFormProps> = ({ vacancy }) => {
                   control={control}
                   render={({ field, fieldState: { error } }) => (
                     <Select onValueChange={field.onChange} value={field.value}>
-                      <SelectTrigger className="w-full">
+                      <SelectTrigger
+                        className="w-full"
+                        aria-label="select work experience"
+                      >
                         <SelectValue
                           placeholder={t('vacancy.placeholder.experience')}
                         />
@@ -178,7 +189,7 @@ const MyVacancyEditForm: React.FC<MyVacancyEditFormProps> = ({ vacancy }) => {
 
             <div className="flex flex-col gap-5 md:flex-row">
               <div className="flex w-full flex-col gap-3">
-                <Label>{t('vacancy.min-salary')}</Label>
+                <Label htmlFor="salary_start">{t('vacancy.min-salary')}</Label>
                 <ControlledInputField
                   type="number"
                   name="salary_start"
@@ -187,7 +198,7 @@ const MyVacancyEditForm: React.FC<MyVacancyEditFormProps> = ({ vacancy }) => {
                 />
               </div>
               <div className="flex w-full flex-col gap-3">
-                <Label>{t('vacancy.max-salary')}</Label>
+                <Label htmlFor="salary_end">{t('vacancy.max-salary')}</Label>
                 <ControlledInputField
                   type="number"
                   name="salary_end"
@@ -201,7 +212,7 @@ const MyVacancyEditForm: React.FC<MyVacancyEditFormProps> = ({ vacancy }) => {
 
             <div className="flex flex-col gap-5 md:flex-row">
               <div className="flex w-full flex-col gap-3">
-                <Label>Job Title</Label>
+                <Label htmlFor="title_en">Job Title</Label>
                 <ControlledInputField
                   name="title_en"
                   control={control}
@@ -209,7 +220,7 @@ const MyVacancyEditForm: React.FC<MyVacancyEditFormProps> = ({ vacancy }) => {
                 />
               </div>
               <div className="flex w-full flex-col gap-3">
-                <Label>სამუშაოს დასახელება</Label>
+                <Label htmlFor="title_ka">სამუშაოს დასახელება</Label>
                 <ControlledInputField
                   name="title_ka"
                   control={control}
@@ -222,7 +233,7 @@ const MyVacancyEditForm: React.FC<MyVacancyEditFormProps> = ({ vacancy }) => {
 
             <div className="flex flex-col gap-5 md:flex-row">
               <div className="flex w-full flex-col gap-3">
-                <Label>Job Description</Label>
+                <Label htmlFor="description_en">Job Description</Label>
                 <ControlledTextAreaField
                   name="description_en"
                   control={control}
@@ -231,7 +242,7 @@ const MyVacancyEditForm: React.FC<MyVacancyEditFormProps> = ({ vacancy }) => {
                 />
               </div>
               <div className="flex w-full flex-col gap-3">
-                <Label>სამუშაოს აღწერა</Label>
+                <Label htmlFor="description_ka">სამუშაოს აღწერა</Label>
                 <ControlledTextAreaField
                   name="description_ka"
                   control={control}

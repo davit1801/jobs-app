@@ -72,7 +72,10 @@ const CreateVacancyForm: React.FC = () => {
             control={control}
             render={({ field, fieldState: { error } }) => (
               <Select onValueChange={field.onChange} value={field.value}>
-                <SelectTrigger className="w-full">
+                <SelectTrigger
+                  className="w-full"
+                  aria-label="select work category"
+                >
                   <SelectValue
                     placeholder={t('vacancy.placeholder.category')}
                   />
@@ -97,7 +100,7 @@ const CreateVacancyForm: React.FC = () => {
             control={control}
             render={({ field, fieldState: { error } }) => (
               <Select onValueChange={field.onChange} value={field.value}>
-                <SelectTrigger className="w-full">
+                <SelectTrigger className="w-full" aria-label="select work type">
                   <SelectValue placeholder={t('vacancy.placeholder.type')} />
                 </SelectTrigger>
                 <SelectContent>
@@ -120,7 +123,10 @@ const CreateVacancyForm: React.FC = () => {
             control={control}
             render={({ field, fieldState: { error } }) => (
               <Select onValueChange={field.onChange} value={field.value}>
-                <SelectTrigger className="w-full">
+                <SelectTrigger
+                  className="w-full"
+                  aria-label="select work experience"
+                >
                   <SelectValue
                     placeholder={t('vacancy.placeholder.experience')}
                   />
@@ -143,7 +149,7 @@ const CreateVacancyForm: React.FC = () => {
 
       <div className="flex flex-col gap-5 md:flex-row">
         <div className="flex w-full flex-col gap-3">
-          <Label>{t('vacancy.min-salary')}</Label>
+          <Label htmlFor="salary_start">{t('vacancy.min-salary')}</Label>
           <ControlledInputField
             type="number"
             name="salary_start"
@@ -153,7 +159,7 @@ const CreateVacancyForm: React.FC = () => {
           />
         </div>
         <div className="flex w-full flex-col gap-3">
-          <Label>{t('vacancy.max-salary')}</Label>
+          <Label htmlFor="salary_end">{t('vacancy.max-salary')}</Label>
           <ControlledInputField
             type="number"
             name="salary_end"
@@ -168,7 +174,7 @@ const CreateVacancyForm: React.FC = () => {
 
       <div className="flex flex-col gap-5 md:flex-row">
         <div className="flex w-full flex-col gap-3">
-          <Label>Job Title</Label>
+          <Label htmlFor="title_en">Job Title</Label>
           <ControlledInputField
             name="title_en"
             control={control}
@@ -176,7 +182,7 @@ const CreateVacancyForm: React.FC = () => {
           />
         </div>
         <div className="flex w-full flex-col gap-3">
-          <Label>სამუშაოს დასახელება</Label>
+          <Label htmlFor="title_ka">სამუშაოს დასახელება</Label>
           <ControlledInputField
             name="title_ka"
             control={control}
@@ -189,7 +195,7 @@ const CreateVacancyForm: React.FC = () => {
 
       <div className="flex flex-col gap-5 md:flex-row">
         <div className="flex w-full flex-col gap-3">
-          <Label>Job Description</Label>
+          <Label htmlFor="description_en">Job Description</Label>
           <ControlledTextAreaField
             name="description_en"
             control={control}
@@ -198,7 +204,7 @@ const CreateVacancyForm: React.FC = () => {
           />
         </div>
         <div className="flex w-full flex-col gap-3">
-          <Label>სამუშაოს აღწერა</Label>
+          <Label htmlFor="description_ka">სამუშაოს აღწერა</Label>
           <ControlledTextAreaField
             name="description_ka"
             control={control}

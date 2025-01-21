@@ -23,9 +23,15 @@ const ProfileAvatar: React.FC = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild className="hidden md:block">
-        <button className="rounded-md focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring">
+        <button
+          aria-label="profile"
+          className="rounded-md focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+        >
           <Avatar>
-            <AvatarImage src={profile?.avatar_url || ''} />
+            <AvatarImage
+              src={profile?.avatar_url || ''}
+              alt="user profile avatar"
+            />
             <AvatarFallback>{avatarFallBack}</AvatarFallback>
           </Avatar>
         </button>

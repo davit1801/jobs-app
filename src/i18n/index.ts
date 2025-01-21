@@ -26,6 +26,8 @@ import settingsEn from '@/i18n/en/settings.json';
 import settingsKa from '@/i18n/ka/settings.json';
 import contactEn from '@/i18n/en/contact.json';
 import contactKa from '@/i18n/ka/contact.json';
+import aboutEn from '@/i18n/en/about.json';
+import aboutKa from '@/i18n/ka/about.json';
 
 export const SUPPORTED_LANGUAGES = ['en', 'ka'];
 export const defaultLanguage = 'en';
@@ -56,6 +58,7 @@ i18n
           myVacancies: myVacanciesEn,
           settings: settingsEn,
           contact: contactEn,
+          about: aboutEn,
         },
       },
       ka: {
@@ -72,6 +75,7 @@ i18n
           myVacancies: myVacanciesKa,
           settings: settingsKa,
           contact: contactKa,
+          about: aboutKa,
         },
       },
     },

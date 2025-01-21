@@ -49,5 +49,6 @@
     "max-salary": "Maximum  salary must be greater than or equal to 1",
     "refine": "Maximum salary must be greater than or equal to minimum salary"
   },
-  "not-found": "Vacancy not found!"
+  "not-found": "Vacancy not found!",
+  "create-vacancy-title": "Add vacancy"
 }

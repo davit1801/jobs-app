@@ -9,14 +9,13 @@ const SettingsView: React.FC = () => {
   const { t } = useI18nLang();
 
   return (
-    <Card className="mx-auto max-w-lg space-y-6 border p-8 shadow">
+    <Card className="mx-auto mt-8 max-w-lg space-y-6 border p-8 shadow">
       <h2 className="text-xl">{t('settings.account-settings')}</h2>
       <Separator />
       <div className="flex flex-col gap-3">
         <p>{t('settings.change-password')}</p>
         <ChangePasswordForm />
       </div>
-      <Separator />
     </Card>
   );
 };
