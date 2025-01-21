@@ -1,3 +1,6 @@
+import GoHome from '@/components/buttons/go-home';
+import LangSwitcher from '@/components/buttons/lang-switcher';
+import { ThemeToggle } from '@/components/buttons/theme-toggle';
 import useI18nLang from '@/hooks/use-i18n-lang';
 import SignInForm from '@/pages/sign-in/components/sign-in-form/sign-in-form';
 import React from 'react';
@@ -12,6 +15,12 @@ const SignInView: React.FC = () => {
           {t('auth.login-title')}
         </h1>
         <SignInForm />
+
+        <div className="flex gap-1">
+          <LangSwitcher />
+          <ThemeToggle />
+          <GoHome />
+        </div>
       </div>
     </div>
   );

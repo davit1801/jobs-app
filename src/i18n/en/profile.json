@@ -1,0 +1,17 @@
+{
+  "profile": "Profile",
+  "phone": "Phone",
+  "phone-placeholder": "Enter Phone Number",
+  "avatar": "Avatar URL",
+  "avatar-placeholder": "Enter Avatar image Url",
+  "website": "Website URL",
+  "website-placeholder": "Enter Your Website URL",
+  "validation": {
+    "avatar": "Avatar link is required.",
+    "website": "Website link is required.",
+    "phone": "Phone number must consist of at least 6 digits, maximum 14.",
+    "fullname": "Full name is required",
+    "companyname": "Company name is required",
+    "address": "Address is required."
+  }
+}

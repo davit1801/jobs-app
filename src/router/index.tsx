@@ -1,6 +1,8 @@
 import { Spinner } from '@/components/ui/spinner';
 import MainLayout from '@/layouts/main';
 import RootLayout from '@/layouts/root';
+import IsAuthorizedGuard from '@/router/guards/is-authorized-guard';
+import IsUnauthorizedGuard from '@/router/guards/is-unauthorized-guard';
 import LangGuard from '@/router/guards/lang-guard';
 import { ACCOUNT_ROUTES } from '@/router/routes/account';
 import { ACCOUNT_PATHS } from '@/router/routes/account/index.enum';
@@ -26,9 +28,14 @@ const AppRoutes: React.FC = () => {
           <Route element={<MainLayout />}>
             {MAIN_ROUTES}
             <Route path={VACANCY_PATHS.VACANCY}>{...VACANCY_ROUTES}</Route>
-            <Route path={ACCOUNT_PATHS.ACCOUNT}>{...ACCOUNT_ROUTES}</Route>
+            <Route
+              path={ACCOUNT_PATHS.ACCOUNT}
+              element={<IsUnauthorizedGuard />}
+            >
+              {...ACCOUNT_ROUTES}
+            </Route>
           </Route>
-          {...AUTH_ROUTES}
+          <Route element={<IsAuthorizedGuard />}>{...AUTH_ROUTES}</Route>
         </Route>
       </Route>
 

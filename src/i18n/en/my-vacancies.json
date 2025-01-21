@@ -1,0 +1,15 @@
+{
+  "table-caption": "List of your posted vacancies",
+  "table-head": {
+    "createdAt": "Created_At",
+    "title": "Title",
+    "category": "Category",
+    "edit": "Edit"
+  },
+  "alert-title": "Are you sure you want to delete the vacancy?",
+  "alert-description": "This action cannot be undone.This will permanently delete your vacancy.",
+  "confirm-text": "Delete",
+  "calcel-text": "Cancel",
+  "edit-vacancy": "Edit vacancy",
+  "dialog-title": "Make changes to your profile here. Click save when you're done."
+}

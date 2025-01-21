@@ -1,3 +1,5 @@
+import { SingleVacancy } from '@/supabase/vacancies/index.types';
+
 export type ProfileFormValues = {
   avatar_url: string;
   website_url: string;
@@ -8,4 +10,13 @@ export type ProfileFormValues = {
   address_en: string;
   address_ka: string;
   phone: string;
+};
+
+export type MyVacancyEditFormProps = {
+  vacancy: SingleVacancy;
+};
+
+export type ChangePasswordFormValues = {
+  new_password: string;
+  confirm_password: string;
 };

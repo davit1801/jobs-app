@@ -10,11 +10,9 @@ export const SignUpFormSchema = z
       .regex(/[a-z]/, 'auth.password-lowercase')
       .regex(/[0-9]/, 'auth.password-number')
       .regex(/[@$!%*?&#]/, 'auth.password-character'),
-    confirmPassword: z
-      .string()
-      .min(6, { message: 'Password confirmation is required' }),
+    confirmPassword: z.string().min(6, { message: 'auth.pass-confirm' }),
   })
   .refine((data) => data.password === data.confirmPassword, {
     path: ['confirmPassword'],
-    message: 'Passwords must match',
+    message: 'auth.pass-match',
   });

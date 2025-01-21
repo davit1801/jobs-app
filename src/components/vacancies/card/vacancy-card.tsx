@@ -22,11 +22,11 @@ const VacancyCard: React.FC<PropsTypes> = ({ vacancy }) => {
   const companyName =
     lang === 'en' ? vacancy.company_name_en : vacancy.company_name_ka;
   const vacancyTitle = lang === 'en' ? vacancy.title_en : vacancy.title_ka;
-  const formatedData = formatDate(vacancy?.created_at as string, lang);
+  const formatedData: string = formatDate(vacancy?.created_at as string, lang);
 
   return (
     <Card className="flex max-w-4xl flex-col gap-10 p-8 md:gap-6">
-      <span className="self-start rounded-[8px] bg-primary/10 p-2 leading-3 text-primary">
+      <span className="self-start rounded-[8px] bg-primary/10 p-2 text-primary md:leading-3">
         {formatedData}
       </span>
 
@@ -40,10 +40,10 @@ const VacancyCard: React.FC<PropsTypes> = ({ vacancy }) => {
         </div>
 
         <div className="flex flex-col gap-5">
-          <h3 className="break-before-all text-2xl font-semibold leading-4">
+          <h3 className="break-all text-2xl font-semibold md:leading-4">
             {vacancyTitle}
           </h3>
-          <span className="leading-4 text-foreground">{companyName}</span>
+          <span className="text-foreground md:leading-4">{companyName}</span>
         </div>
       </div>
       <div className="flex flex-col items-start gap-10 md:gap-5">
@@ -74,7 +74,7 @@ const VacancyCard: React.FC<PropsTypes> = ({ vacancy }) => {
 
         <Button asChild className="self-stretch md:self-start">
           <Link to={`/${lang}/${VACANCY_PATHS.VACANCY}/${vacancy.id}`}>
-            Job Details
+            {t('button.job-details')}
           </Link>
         </Button>
       </div>

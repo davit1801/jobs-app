@@ -1,10 +1,10 @@
-import ControlledInputField from '@/components/form/controlled-input-field';
+import ControlledInputField from '@/components/form-elements/controlled-input-field';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { ProfileFormValues } from '@/pages/account/types';
 import { useFillUserProfile } from '@/react-query/mutation/profiles';
-import { sessionAtom, userProfileAtom } from '@/store/auth';
+import { userAtom, userProfileAtom } from '@/store/auth';
 import { useAtom, useAtomValue } from 'jotai';
 import { Loader2 } from 'lucide-react';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -17,7 +17,7 @@ const ProfileForm: React.FC = () => {
   const { toast } = useToast();
   const { t } = useI18nLang();
   const [profile, setProfile] = useAtom(userProfileAtom);
-  const session = useAtomValue(sessionAtom);
+  const user = useAtomValue(userAtom);
   const { control, handleSubmit, watch } = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
     defaultValues: {
@@ -54,8 +54,8 @@ const ProfileForm: React.FC = () => {
   });
 
   const handleFormSubmit: SubmitHandler<ProfileFormValues> = (formFields) => {
-    if (session) {
-      mutate({ ...formFields, id: session?.user?.id });
+    if (user) {
+      mutate({ ...formFields, id: user?.id });
     }
   };
 
@@ -66,30 +66,31 @@ const ProfileForm: React.FC = () => {
     >
       <div className="flex flex-col gap-5 md:flex-row">
         <div className="flex w-full flex-col gap-3">
-          <Label>Phone</Label>
+          <Label>{t('profile.avatar')}</Label>
           <ControlledInputField
-            name="phone"
+            name="avatar_url"
             control={control}
-            placeholder="Enter Phone Number"
+            placeholder={t('profile.avatar-placeholder')}
           />
         </div>
       </div>
 
       <div className="flex flex-col gap-5 md:flex-row">
         <div className="flex w-full flex-col gap-3">
-          <Label>Avatar URL</Label>
+          <Label>{t('profile.phone')}</Label>
           <ControlledInputField
-            name="avatar_url"
+            name="phone"
             control={control}
-            placeholder="Enter Avatar image Url"
+            placeholder={t('profile.phone-placeholder')}
           />
         </div>
+
         <div className="flex w-full flex-col gap-3">
-          <Label>Website URL</Label>
+          <Label>{t('profile.website')}</Label>
           <ControlledInputField
             name="website_url"
             control={control}
-            placeholder="Enter Your Website URL"
+            placeholder={t('profile.website-placeholder')}
           />
         </div>
       </div>
@@ -155,7 +156,7 @@ const ProfileForm: React.FC = () => {
 
       <Button className="self-end" disabled={isPending}>
         {isPending && <Loader2 className="animate-spin" />}
-        Save Changes
+        {t('button.save-changes')}
       </Button>
     </form>
   );

@@ -10,15 +10,15 @@ import SignOutButton from '@/components/buttons/sign-out';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Link } from 'react-router';
 import { useAtomValue } from 'jotai';
-import { sessionAtom, userProfileAtom } from '@/store/auth';
+import { userAtom, userProfileAtom } from '@/store/auth';
 import useI18nLang from '@/hooks/use-i18n-lang';
-import { ACCOUNT_PATHS } from '@/router/routes/account/index.enum';
+import { ACCOUNT_ITEMS } from '@/assets/data/nav-paths/nav-paths';
 
 const ProfileAvatar: React.FC = () => {
   const profile = useAtomValue(userProfileAtom);
-  const session = useAtomValue(sessionAtom);
-  const avatarFallBack = session?.user?.email?.at(0)?.toUpperCase();
-  const { lang } = useI18nLang();
+  const user = useAtomValue(userAtom);
+  const avatarFallBack = user?.email?.at(0)?.toUpperCase();
+  const { lang, t } = useI18nLang();
 
   return (
     <DropdownMenu>
@@ -32,23 +32,14 @@ const ProfileAvatar: React.FC = () => {
       </DropdownMenuTrigger>
 
       <DropdownMenuContent align="end">
-        <DropdownMenuItem asChild>
-          <Link
-            to={`/${lang}/${ACCOUNT_PATHS.ACCOUNT}/${ACCOUNT_PATHS.PROFILE}`}
-            className="w-full"
-          >
-            Profile
-          </Link>
-        </DropdownMenuItem>
+        {ACCOUNT_ITEMS.map((navItem) => (
+          <DropdownMenuItem asChild key={navItem.path}>
+            <Link to={`/${lang}/${navItem.path}`} className="w-full">
+              {t(`button.nav-buttons.${navItem.name}`)}
+            </Link>
+          </DropdownMenuItem>
+        ))}
 
-        <DropdownMenuItem asChild>
-          <Link
-            to={`/${lang}/${ACCOUNT_PATHS.ACCOUNT}/${ACCOUNT_PATHS.SETTINGS}`}
-            className="w-full"
-          >
-            Settings
-          </Link>
-        </DropdownMenuItem>
         <DropdownMenuSeparator />
 
         <DropdownMenuItem>

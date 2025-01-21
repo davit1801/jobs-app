@@ -1,8 +1,9 @@
 import { WORK_CATEGORY_VALUES } from '@/assets/data/select-elements-data/work-category';
 import { WORK_EXPERIENCE_VALUES } from '@/assets/data/select-elements-data/work-experience';
 import { WORK_TYPES_VALUES } from '@/assets/data/select-elements-data/work-type';
-import ControlledInputField from '@/components/form/controlled-input-field';
-import ControlledTextAreaField from '@/components/form/controlled-textarea-field';
+import InputFieldError from '@/components/errors/Input-field-error';
+import ControlledInputField from '@/components/form-elements/controlled-input-field';
+import ControlledTextAreaField from '@/components/form-elements/controlled-textarea-field';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import {
@@ -15,9 +16,11 @@ import {
 import useI18nLang from '@/hooks/use-i18n-lang';
 import { useToast } from '@/hooks/use-toast';
 import { createVacancyFormDefaultValues } from '@/pages/vacancy/components/create-vacancy-form/default-values';
+import { createVacancyFormSchema } from '@/pages/vacancy/schema';
 import { useCreateVacancy } from '@/react-query/mutation/vacancies';
-import { sessionAtom } from '@/store/auth';
-import { CreateVacancyFormFields } from '@/supabase/vacancies/index.types';
+import { userAtom } from '@/store/auth';
+import { CreateUpdateVacancyFormFields } from '@/supabase/vacancies/index.types';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useAtomValue } from 'jotai';
 import { Loader2 } from 'lucide-react';
 import React from 'react';
@@ -26,9 +29,10 @@ import { useNavigate } from 'react-router';
 
 const CreateVacancyForm: React.FC = () => {
   const { control, handleSubmit, reset } = useForm({
+    resolver: zodResolver(createVacancyFormSchema),
     defaultValues: createVacancyFormDefaultValues,
   });
-  const session = useAtomValue(sessionAtom);
+  const user = useAtomValue(userAtom);
   const { lang, t } = useI18nLang();
   const naviagte = useNavigate();
   const { toast } = useToast();
@@ -49,9 +53,9 @@ const CreateVacancyForm: React.FC = () => {
     },
   });
 
-  const handleFormSubmit = (formFields: CreateVacancyFormFields) => {
-    if (session) {
-      mutate({ formFields: formFields, user_id: session?.user.id });
+  const handleFormSubmit = (formFields: CreateUpdateVacancyFormFields) => {
+    if (user) {
+      mutate({ formFields: formFields, user_id: user.id });
     }
   };
 
@@ -60,68 +64,75 @@ const CreateVacancyForm: React.FC = () => {
       onSubmit={handleSubmit(handleFormSubmit)}
       className="flex flex-col gap-4"
     >
-      <div className="flex flex-col gap-5 md:flex-row">
+      <div className="flex flex-col gap-5">
         <div className="flex flex-shrink-0 flex-col gap-3">
-          <Label>Work category</Label>
+          <Label>{t('vacancy.vacancy-category')}</Label>
           <Controller
             name="category"
             control={control}
-            render={({ field }) => (
+            render={({ field, fieldState: { error } }) => (
               <Select onValueChange={field.onChange} value={field.value}>
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select work category" />
+                  <SelectValue
+                    placeholder={t('vacancy.placeholder.category')}
+                  />
                 </SelectTrigger>
                 <SelectContent>
                   {WORK_CATEGORY_VALUES.map((value) => (
-                    <SelectItem value={value.id} key={value.id}>
-                      {value.name}
+                    <SelectItem value={value.value} key={value.id}>
+                      {t(`vacancy.category.${value.value}`)}
                     </SelectItem>
                   ))}
                 </SelectContent>
+                {error && <InputFieldError message={t(`${error.message}`)} />}
               </Select>
             )}
           />
         </div>
 
         <div className="flex flex-shrink-0 flex-col gap-3">
-          <Label>Work type</Label>
+          <Label>{t('vacancy.vacancy-type')}</Label>
           <Controller
             name="work_type"
             control={control}
-            render={({ field }) => (
+            render={({ field, fieldState: { error } }) => (
               <Select onValueChange={field.onChange} value={field.value}>
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select work type" />
+                  <SelectValue placeholder={t('vacancy.placeholder.type')} />
                 </SelectTrigger>
                 <SelectContent>
                   {WORK_TYPES_VALUES.map((value) => (
                     <SelectItem value={value.value} key={value.id}>
-                      {value.name}
+                      {t(`vacancy.work-type.${value.value}`)}
                     </SelectItem>
                   ))}
                 </SelectContent>
+                {error && <InputFieldError message={t(`${error.message}`)} />}
               </Select>
             )}
           />
         </div>
 
         <div className="flex flex-shrink-0 flex-col gap-3">
-          <Label>Work experience</Label>
+          <Label>{t('vacancy.vacancy-experience')}</Label>
           <Controller
             name="work_experience"
             control={control}
-            render={({ field }) => (
+            render={({ field, fieldState: { error } }) => (
               <Select onValueChange={field.onChange} value={field.value}>
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select work experience" />
+                  <SelectValue
+                    placeholder={t('vacancy.placeholder.experience')}
+                  />
                 </SelectTrigger>
                 <SelectContent>
                   {WORK_EXPERIENCE_VALUES.map((value) => (
                     <SelectItem value={value.value} key={value.id}>
-                      {value.name}
+                      {t(`vacancy.experience.${value.value}`)}
                     </SelectItem>
                   ))}
                 </SelectContent>
+                {error && <InputFieldError message={t(`${error.message}`)} />}
               </Select>
             )}
           />
@@ -132,22 +143,22 @@ const CreateVacancyForm: React.FC = () => {
 
       <div className="flex flex-col gap-5 md:flex-row">
         <div className="flex w-full flex-col gap-3">
-          <Label>Min Salery</Label>
+          <Label>{t('vacancy.min-salary')}</Label>
           <ControlledInputField
             type="number"
             name="salary_start"
             control={control}
-            placeholder="Minimum Salary"
+            min={1}
             valueAsNumber
           />
         </div>
         <div className="flex w-full flex-col gap-3">
-          <Label>Max Salery</Label>
+          <Label>{t('vacancy.max-salary')}</Label>
           <ControlledInputField
             type="number"
             name="salary_end"
             control={control}
-            placeholder="Maximum Salary"
+            min={1}
             valueAsNumber
           />
         </div>
@@ -199,7 +210,7 @@ const CreateVacancyForm: React.FC = () => {
 
       <Button className="self-end" disabled={isPending}>
         {isPending && <Loader2 className="animate-spin" />}
-        Post Job
+        {t('button.post-vacancy')}
       </Button>
     </form>
   );

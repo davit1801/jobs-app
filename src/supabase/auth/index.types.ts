@@ -1,3 +1,4 @@
+import { UserProfileTypes } from '@/supabase/profiles/index.types';
 import { Session, User, WeakPassword } from '@supabase/supabase-js';
 
 export type UserSignInPayload = {
@@ -27,4 +28,13 @@ export type UserSignUpResponse = {
 
 export type SessionType = {
   session: Session | null;
+};
+
+export type CurrentUser = {
+  user: User;
+  profile: UserProfileTypes;
+};
+
+export type UpdateUserPayload = {
+  password: string;
 };

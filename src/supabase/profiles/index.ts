@@ -1,17 +1,16 @@
 import { supabase } from '@/supabase';
 import { UserProfilePayload } from '@/supabase/profiles/index.types';
 
-export const getUserProfile = async (id: string | undefined) => {
-  if (!id) return null;
+export const getUserProfile = async (id: string) => {
   try {
-    const { data } = await supabase
+    const { data: profile } = await supabase
       .from('profiles')
       .select('*')
       .eq('id', id)
       .single()
       .throwOnError();
 
-    return data;
+    return profile;
   } catch (error) {
     console.error(
       'An unexpected error occurred while fetching profile information:',

@@ -2,12 +2,12 @@ import { Database } from '@/supabase/database.types';
 
 export type SingleVacancy = Database['public']['Tables']['vacancies']['Row'];
 
-export type CreateVacancyFormFields = {
+export type CreateUpdateVacancyFormFields = {
   category: string;
   description_en: string;
   description_ka: string;
-  salary_end: number;
-  salary_start: number;
+  salary_end: number | null;
+  salary_start: number | null;
   title_en: string;
   title_ka: string;
   work_experience: string;
@@ -15,6 +15,15 @@ export type CreateVacancyFormFields = {
 };
 
 export type CreateVacancyPayload = {
-  formFields: CreateVacancyFormFields;
+  formFields: CreateUpdateVacancyFormFields;
   user_id: string;
+};
+
+export type UpdateVacancyPayload = {
+  updatedFields: CreateUpdateVacancyFormFields;
+  vacancy_id: number;
+};
+
+export type DeleteVacancyPayload = {
+  vacancy_id: number;
 };

@@ -6,10 +6,11 @@
     "shifts": "Shifts"
   },
   "experience": {
+    "without-experiance": "Without experience",
     "0-2": "0-2 Year",
     "2-5": "2-5 Year",
     "5-10": "5-10 Year",
-    "10": "10+ Year"
+    "10+": "10+ Year"
   },
   "category": {
     "software-dev": "Software Development",
@@ -28,6 +29,25 @@
     "logistics": "Transportation & Logistics",
     "other": "Other"
   },
+  "placeholder": {
+    "category": "Select a category",
+    "type": "Select a work type",
+    "experience": "Select work experience"
+  },
   "about-company": "Company Info",
-  "posted": "Posted"
+  "posted": "Posted",
+  "vacancy-category": "Categories",
+  "vacancy-type": "Work type",
+  "vacancy-experience": "Experience",
+  "min-salary": "Min salary",
+  "max-salary": "Max salary",
+  "validation": {
+    "work-type": "Work type is required",
+    "experience": "Work experience is required",
+    "category": "Work category is required",
+    "min-salary": "Minimum salary must be greater than or equal to 1",
+    "max-salary": "Maximum  salary must be greater than or equal to 1",
+    "refine": "Maximum salary must be greater than or equal to minimum salary"
+  },
+  "not-found": "Vacancy not found!"
 }

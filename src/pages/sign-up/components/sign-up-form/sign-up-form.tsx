@@ -1,5 +1,5 @@
 import InputFieldError from '@/components/errors/Input-field-error';
-import ControlledInputField from '@/components/form/controlled-input-field';
+import ControlledInputField from '@/components/form-elements/controlled-input-field';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
@@ -96,7 +96,7 @@ const RegisterForm: React.FC = () => {
         {t('auth.sign-up')}
       </Button>
 
-      <p className="flex flex-col items-center gap-2 text-sm font-light text-muted-foreground sm:flex-row sm:items-start">
+      <p className="flex flex-col items-center gap-2 text-sm font-light sm:flex-row sm:items-start">
         <span>{t('auth.already-have')} </span>
 
         <span>

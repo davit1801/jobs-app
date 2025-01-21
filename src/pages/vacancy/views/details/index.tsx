@@ -19,10 +19,16 @@ import { formatDate } from '@/lib/formatDate';
 const VacancyDetailsView: React.FC = () => {
   const { lang, t } = useI18nLang();
   const { id } = useParams<{ id: string }>();
-  const { data: vacancy, isPending } = useQuery({
+  const {
+    data: vacancy,
+    isPending,
+    isError,
+  } = useQuery({
     queryKey: ['fetch-signle-vacnacy', id],
     queryFn: () => getSingleVacancyById(id!),
   });
+
+  console.log(vacancy);
 
   const companyName =
     lang === 'en' ? vacancy?.company_name_en : vacancy?.company_name_ka;
@@ -35,6 +41,11 @@ const VacancyDetailsView: React.FC = () => {
   return (
     <>
       {isPending && <Skeleton className="h-[300px] w-full" />}
+      {isError && (
+        <h2 className="mt-8 text-center text-2xl font-bold">
+          {t('vacancy.not-found')}{' '}
+        </h2>
+      )}
       {vacancy && (
         <Card className="flex flex-col gap-5 p-4">
           <div className="flex flex-col items-start justify-between gap-3 md:flex-row">

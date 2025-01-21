@@ -1,6 +1,12 @@
-import { AUTH_MUTATION_KEYS } from '@/react-query/mutation/auth/enum';
-import { signInUser, signOutUser, signupUser } from '@/supabase/auth';
+import { AUTH_MUTATION_KEYS } from '@/react-query/mutation/auth/index.enum';
 import {
+  signInUser,
+  signOutUser,
+  signupUser,
+  updateUserPassword,
+} from '@/supabase/auth';
+import {
+  UpdateUserPayload,
   UserSignInPayload,
   UserSignInResponse,
   UserSignUpPayload,
@@ -55,3 +61,30 @@ export const useUserSignOut = <T = void>({
     ...mutationOptions,
   });
 };
+
+export const useUpdateUserPassword = <T = void>({
+  mutationOptions = {},
+}: {
+  mutationOptions?: Omit<
+    UseMutationOptions<T, AuthError, UpdateUserPayload>,
+    'mutationKey'
+  >;
+} = {}): UseMutationResult<T, AuthError, UpdateUserPayload> => {
+  return useMutation<T, AuthError, UpdateUserPayload>({
+    mutationKey: [AUTH_MUTATION_KEYS.UPDAYE_USER_PASSWORD],
+    mutationFn: updateUserPassword as MutationFunction<T, UpdateUserPayload>,
+    ...mutationOptions,
+  });
+};
+
+// export const useUserDelete = <T = void>({
+//   mutationOptions = {},
+// }: {
+//   mutationOptions?: Omit<UseMutationOptions<T, AuthError>, 'mutationKey'>;
+// } = {}): UseMutationResult<T, AuthError, void> => {
+//   return useMutation<T, AuthError, void>({
+//     mutationKey: [AUTH_MUTATION_KEYS.DELETE_USER],
+//     mutationFn: deleteUser ,
+//     ...mutationOptions,
+//   });
+// };

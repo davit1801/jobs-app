@@ -1,0 +1,19 @@
+{
+  "title": "Contact us",
+  "first-name": "First Name",
+  "last-name": "Last Name",
+  "email": "Email",
+  "message": "Message",
+  "placeholder": {
+    "first-name": "Enter first name",
+    "last-name": "Enter first name",
+    "email": "Enter email",
+    "message": "Enter your message"
+  },
+  "validation": {
+    "first-name": "The name must consist of at least 2 characters.",
+    "last-name": "The name must consist of at least 2 characters.",
+    "email": "The email is invalid, please enter a valid email.",
+    "message": "The message must consist of at least 10 characters."
+  }
+}

@@ -32,7 +32,7 @@ const SignOutButton: React.FC = () => {
 
   return (
     <button onClick={handleLogout} className="w-full cursor-pointer text-left">
-      Sign out
+      {t('button.sign-out')}
     </button>
   );
 };

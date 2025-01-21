@@ -4,13 +4,17 @@
     "sing-in": "You have successfully passed the authorization.",
     "sign-up": "You have successfully registered.",
     "sign-out": "You have successfully sign out.",
-    "update-profile": "User profile updated successfully."
+    "update-profile": "User profile updated successfully.",
+    "update-vacancy": "Your vacancy updated successfully.",
+    "update-password": "Your password updated successfully."
   },
   "error": {
     "create-vacancy": "An error occurred while creating the vacancy.",
     "sign-in": "Authorization failed. Try again.",
     "sign-up": "An error occurred during the registration process, please try again.",
     "sign-out": "Failed to sign out.",
-    "update-profile": "Failed to update profile, please try again."
+    "update-profile": "Failed to update profile, please try again.",
+    "update-vacancy": "Failed to update vacancy, please try again.",
+    "update-password": "Failed to update password, please try again."
   }
 }

@@ -18,7 +18,7 @@ const NotFoundView: React.FC = () => {
             {t('notFound.sorry')}
           </p>
           <div className="mt-10">
-            <GoHome />
+            <GoHome className="text-lg" />
           </div>
         </div>
       </PageContainer>

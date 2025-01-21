@@ -1,4 +1,4 @@
-import ControlledInputField from '@/components/form/controlled-input-field';
+import ControlledInputField from '@/components/form-elements/controlled-input-field';
 import { Button } from '@/components/ui/button';
 import useI18nLang from '@/hooks/use-i18n-lang';
 import { SignInFormSchema } from '@/pages/sign-in/schema';
@@ -35,7 +35,7 @@ const SignInForm: React.FC = () => {
       },
       onError: () => {
         toast({
-          description: t('toast.error.sing-in'),
+          description: t('toast.error.sign-in'),
           variant: 'destructive',
         });
       },
@@ -81,7 +81,7 @@ const SignInForm: React.FC = () => {
         {t('auth.sign-in')}
       </Button>
 
-      <p className="flex flex-col items-center gap-2 text-sm font-light text-muted-foreground sm:flex-row sm:items-start">
+      <p className="flex flex-col items-center gap-2 text-sm font-light sm:flex-row sm:items-start">
         <span>{t('auth.dont-have')} </span>
         <span>
           <Link

@@ -8,6 +8,9 @@ export default defineConfig(() => {
   const srcPath = `${rootPath}/src`;
 
   return {
+    server: {
+      host: true,
+    },
     plugins: [react()],
     resolve: {
       alias: {

@@ -1,5 +1,6 @@
 import { supabase } from '@/supabase';
 import {
+  UpdateUserPayload,
   UserSignInPayload,
   UserSignUpPayload,
 } from '@/supabase/auth/index.types';
@@ -65,6 +66,32 @@ export const getSession = async () => {
     if (error) throw error;
 
     return session;
+  } catch (error) {
+    console.error('Error fetching session:', error);
+    throw error;
+  }
+};
+
+export const updateUserPassword = async ({ password }: UpdateUserPayload) => {
+  try {
+    const { data, error } = await supabase.auth.updateUser({
+      password: password,
+    });
+    if (error) throw error;
+
+    return data;
+  } catch (error) {
+    console.error('Error fetching session:', error);
+    throw error;
+  }
+};
+
+export const deleteUser = async (user_id: string) => {
+  try {
+    const { data, error } = await supabase.auth.admin.deleteUser(user_id);
+    if (error) throw error;
+
+    return data;
   } catch (error) {
     console.error('Error fetching session:', error);
     throw error;

@@ -1,79 +1,53 @@
-// import { supabase } from '@/supabase';
-// import { sessionAtom, userProfileAtom } from '@/store/auth';
-// import { useEffect } from 'react';
-// import { useSetAtom } from 'jotai';
-// import { getUserProfile } from '@/supabase/profiles';
-// import { getSession } from '@/supabase/auth';
-
-// const useAuth = () => {
-//   const setSession = useSetAtom(sessionAtom);
-//   const setProfile = useSetAtom(userProfileAtom);
-
-//   useEffect(() => {
-//     const fetchSession = async () => {
-//       const session = await getSession();
-//       setSession(session);
-//     };
-
-//     const {
-//       data: { subscription },
-//     } = supabase.auth.onAuthStateChange(async (_event, session) => {
-//       setSession(session);
-
-//       const fetchProfile = async () => {
-//         const profile = await getUserProfile(session?.user.id);
-//         setProfile(profile);
-//       };
-
-//       fetchProfile();
-//     });
-
-//     fetchSession();
-
-//     return () => subscription.unsubscribe();
-//   }, [setSession, setProfile]);
-// };
-
-// export default useAuth;
-
 import { supabase } from '@/supabase';
-import { sessionAtom, userProfileAtom } from '@/store/auth';
-import { useEffect, useState } from 'react';
+import { userAtom, userProfileAtom } from '@/store/auth';
+import { useCallback, useEffect } from 'react';
 import { useSetAtom } from 'jotai';
 import { getUserProfile } from '@/supabase/profiles';
-import { getSession } from '@/supabase/auth';
+import { Session } from '@supabase/supabase-js';
 
 const useAuth = () => {
-  const setSession = useSetAtom(sessionAtom);
+  const setUser = useSetAtom(userAtom);
   const setProfile = useSetAtom(userProfileAtom);
-  const [loading, setLoading] = useState(true); // Add loading state
+
+  const fetchUserProfile = useCallback(
+    async (session: Session) => {
+      try {
+        const profile = await getUserProfile(session.user.id);
+        setProfile(profile);
+      } catch (profileError) {
+        console.error(
+          'Error fetching profile on auth state change:',
+          profileError,
+        );
+      }
+    },
+    [setProfile],
+  );
 
   useEffect(() => {
-    const fetchSession = async () => {
-      const session = await getSession();
-      setSession(session);
-      setLoading(false); // Loading complete
-    };
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session) {
+        setUser(session?.user);
+        fetchUserProfile(session);
+      }
+    });
 
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange(async (_event, session) => {
-      setSession(session);
-
-      const fetchProfile = async () => {
-        const profile = await getUserProfile(session?.user.id);
-        setProfile(profile);
-      };
-
-      fetchProfile();
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session) {
+        setUser(session?.user);
+        fetchUserProfile(session);
+      } else {
+        setUser(null);
+        setProfile(null);
+      }
     });
 
-    fetchSession();
-
     return () => subscription.unsubscribe();
-  }, [setSession, setProfile]);
+  }, [setUser, setProfile, fetchUserProfile]);
 
-  return { loading };
+  return null;
 };
 
 export default useAuth;

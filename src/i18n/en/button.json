@@ -1,3 +1,15 @@
 {
-  "go-home": "Go Home"
+  "nav-buttons": {
+    "profile": "Profile",
+    "my-vacancies": "My vacancies",
+    "settings": "Settings"
+  },
+  "go-home": "Go Home",
+  "job-details": "Job Details",
+  "add-vacancy": "Add vacancy",
+  "login": "Login",
+  "sign-out": "Sign out",
+  "save-changes": "Save Changes",
+  "post-vacancy": "Post vacancy",
+  "send-message": "Send Message"
 }

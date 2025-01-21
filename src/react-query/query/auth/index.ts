@@ -1,4 +1,4 @@
-import { AUTH_QUERY_KEYS } from '@/react-query/query/auth/enum';
+import { AUTH_QUERY_KEYS } from '@/react-query/query/auth/index.enum';
 import { getSession } from '@/supabase/auth';
 import { AuthError, Session } from '@supabase/supabase-js';
 import {

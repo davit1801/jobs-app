@@ -1,7 +1,7 @@
 import { UserProfileTypes } from '@/supabase/profiles/index.types';
-import { Session } from '@supabase/supabase-js';
+import { User } from '@supabase/supabase-js';
 import { atom } from 'jotai';
 
-export const sessionAtom = atom<Session | null>(null);
-
 export const userProfileAtom = atom<UserProfileTypes | null>(null);
+
+export const userAtom = atom<User | null>(null);
