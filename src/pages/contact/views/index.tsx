@@ -1,5 +1,5 @@
 import useI18nLang from '@/hooks/use-i18n-lang';
-import ContactForm from '@/pages/contact/components/contact-form';
+import ContactForm from '@/pages/contact/components/contact-form/contact-form';
 import React from 'react';
 
 const ContactView: React.FC = () => {

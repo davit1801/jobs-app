@@ -14,7 +14,7 @@ import i18next from 'i18next';
 import React, { lazy, Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router';
 
-const NotFoundPageView = lazy(() => import('@/pages/not-found/index'));
+const NotFoundPageView = lazy(() => import('@/pages/not-found/views/index'));
 
 const AppRoutes: React.FC = () => {
   return (

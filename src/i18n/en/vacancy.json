@@ -41,6 +41,7 @@
   "vacancy-experience": "Experience",
   "min-salary": "Min salary",
   "max-salary": "Max salary",
+  "description": "vacancy description",
   "validation": {
     "work-type": "Work type is required",
     "experience": "Work experience is required",
