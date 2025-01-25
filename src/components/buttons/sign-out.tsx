@@ -1,7 +1,7 @@
 import useI18nLang from '@/hooks/use-i18n-lang';
 import { useToast } from '@/hooks/use-toast';
 import { useUserSignOut } from '@/react-query/mutation/auth';
-import { MAIN_PATHS } from '@/router/routes/main/index.enum';
+
 import React from 'react';
 import { useNavigate } from 'react-router';
 
@@ -13,7 +13,7 @@ const SignOutButton: React.FC = () => {
   const { mutate } = useUserSignOut({
     mutationOptions: {
       onSuccess: () => {
-        navigate(`${MAIN_PATHS.HOME}${lang}`);
+        navigate(`/${lang}`);
         toast({ description: t('toast.success.sign-out') });
       },
       onError: (error) => {

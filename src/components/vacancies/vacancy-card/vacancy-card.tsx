@@ -9,7 +9,7 @@ import { MapPin } from 'lucide-react';
 import { Link } from 'react-router';
 import React from 'react';
 import { VACANCY_PATHS } from '@/router/routes/vacancy/index.enum';
-import { formatDate } from '@/lib/formatDate';
+import { formatDate } from '@/lib/format-date';
 
 type PropsTypes = {
   vacancy: SingleVacancy;

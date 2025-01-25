@@ -57,10 +57,7 @@ const MyVacancyEditForm: React.FC<MyVacancyEditFormProps> = ({ vacancy }) => {
     mutationOptions: {
       onSuccess: () => {
         queryClient.invalidateQueries({
-          queryKey: [VACANCIES_QUERY_KEYS.MY_VACANCIES_LIST],
-        });
-        queryClient.invalidateQueries({
-          queryKey: [VACANCIES_QUERY_KEYS.VACANCIES_LIST],
+          queryKey: [VACANCIES_QUERY_KEYS.VACANCIES],
         });
         setIsDialogOpen(false);
         toast({ description: t('toast.success.update-vacancy') });
@@ -76,7 +73,6 @@ const MyVacancyEditForm: React.FC<MyVacancyEditFormProps> = ({ vacancy }) => {
 
   const handleFormSubmit = (formFields: CreateUpdateVacancyFormFields) => {
     mutate({ updatedFields: formFields, vacancy_id: vacancy.id });
-    console.log(formFields);
   };
 
   return (

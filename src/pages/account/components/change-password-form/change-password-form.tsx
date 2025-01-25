@@ -34,7 +34,6 @@ const ChangePasswordForm: React.FC = () => {
 
   const handleFormSubmit = (formFields: ChangePasswordFormValues) => {
     mutate({ password: formFields.new_password });
-    console.log(formFields);
   };
 
   return (
@@ -46,6 +45,7 @@ const ChangePasswordForm: React.FC = () => {
             name="new_password"
             control={control}
             type="password"
+            autoComplete="new-password"
           />
         </div>
 
@@ -57,6 +57,7 @@ const ChangePasswordForm: React.FC = () => {
             name="confirm_password"
             control={control}
             type="password"
+            autoComplete="new-password"
           />
         </div>
 

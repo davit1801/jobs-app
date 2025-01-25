@@ -1,22 +1,21 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
-import { Controller, Control } from 'react-hook-form';
+import { Controller, Control, Path, FieldValues } from 'react-hook-form';
 import useI18nLang from '@/hooks/use-i18n-lang';
 import InputFieldError from '@/components/errors/Input-field-error';
 import { Textarea } from '@/components/ui/textarea';
 
-type ControlledTextAreaProps = {
+type ControlledTextAreaProps<T extends FieldValues> = {
   className?: string;
-  name: string;
-  control: Control<any>;
+  name: Path<T>;
+  control: Control<T>;
 } & React.TextareaHTMLAttributes<HTMLTextAreaElement>;
 
-const ControlledTextAreaField: React.FC<ControlledTextAreaProps> = ({
+const ControlledTextAreaField = <T extends FieldValues>({
   name,
   control,
   className,
   ...props
-}) => {
+}: ControlledTextAreaProps<T>) => {
   const { t } = useI18nLang();
   return (
     <Controller

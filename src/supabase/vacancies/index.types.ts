@@ -14,6 +14,11 @@ export type CreateUpdateVacancyFormFields = {
   work_type: string;
 };
 
+export type VacanciesListRespone = {
+  data: SingleVacancy[] | null;
+  count: number | null;
+};
+
 export type CreateVacancyPayload = {
   formFields: CreateUpdateVacancyFormFields;
   user_id: string;

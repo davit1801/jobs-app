@@ -1,16 +1,18 @@
 import { supabase } from '@/supabase';
 import { userAtom, userProfileAtom } from '@/store/auth';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { useSetAtom } from 'jotai';
 import { getUserProfile } from '@/supabase/profiles';
 import { Session } from '@supabase/supabase-js';
 
 const useAuth = () => {
+  const hasFetchedProfile = useRef(false);
   const setUser = useSetAtom(userAtom);
   const setProfile = useSetAtom(userProfileAtom);
-
   const fetchUserProfile = useCallback(
     async (session: Session) => {
+      if (hasFetchedProfile.current) return;
+      hasFetchedProfile.current = true;
       try {
         const profile = await getUserProfile(session.user.id);
         setProfile(profile);

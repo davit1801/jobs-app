@@ -31,10 +31,7 @@ const MyVacanciesList: React.FC = () => {
     mutationOptions: {
       onSuccess: () => {
         queryClient.invalidateQueries({
-          queryKey: [VACANCIES_QUERY_KEYS.MY_VACANCIES_LIST],
-        });
-        queryClient.invalidateQueries({
-          queryKey: [VACANCIES_QUERY_KEYS.VACANCIES_LIST],
+          queryKey: [VACANCIES_QUERY_KEYS.VACANCIES],
         });
       },
     },

@@ -10,7 +10,7 @@ import { Wallet } from 'lucide-react';
 import { Globe } from 'lucide-react';
 import { BookText } from 'lucide-react';
 import { MapPin } from 'lucide-react';
-import { formatDate } from '@/lib/formatDate';
+import { formatDate } from '@/lib/format-date';
 import { Card } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Separator } from '@/components/ui/separator';

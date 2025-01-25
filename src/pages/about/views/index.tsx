@@ -4,6 +4,7 @@ import React from 'react';
 
 const AboutView: React.FC = () => {
   const { t } = useI18nLang();
+
   return (
     <div className="mx-auto max-w-4xl space-y-12 px-6 py-8">
       <div className="py-8 text-center">

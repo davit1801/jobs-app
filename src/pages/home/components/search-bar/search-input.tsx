@@ -25,7 +25,10 @@ const SearchInput: React.FC<PropsType> = ({ className }) => {
   });
   const watchedSearchText = watch('searchText');
   const debouncedSearchText = useDebounce(watchedSearchText, 700);
-  useSetSearchParams(debouncedSearchText);
+  useSetSearchParams({
+    searchText: debouncedSearchText,
+    page: null,
+  });
 
   return (
     <Controller

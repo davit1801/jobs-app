@@ -5,17 +5,23 @@ import {
   UpdateVacancyPayload,
 } from '@/supabase/vacancies/index.types';
 
-export const getVacanciesList = async (searchText: string) => {
+export const getVacanciesList = async (
+  searchText: string,
+  page: number = 1,
+) => {
+  const limit = 3;
+  const offset = (page - 1) * limit;
   try {
-    const { data, error } = await supabase
+    const { data, error, count } = await supabase
       .from('vacancies')
-      .select('*')
+      .select('*', { count: 'exact' })
       .order('id')
-      .or(`title_en.ilike.%${searchText}%,title_ka.ilike.%${searchText}%`);
+      .or(`title_en.ilike.%${searchText}%,title_ka.ilike.%${searchText}%`)
+      .range(offset, offset + limit - 1);
 
     if (error) throw error;
 
-    return data;
+    return { data, count };
   } catch (err) {
     console.error('Error fetching vacancies:', err);
     throw err;
@@ -52,7 +58,7 @@ export const createVacancy = async ({
 
     return data;
   } catch (error) {
-    console.log('Error creating vacancy');
+    console.error('Error creating vacancy');
     throw error;
   }
 };
@@ -71,7 +77,7 @@ export const updateVacancy = async ({
 
     return data;
   } catch (error) {
-    console.log('Error creating blog');
+    console.error('Error creating blog');
     throw error;
   }
 };
