@@ -18,7 +18,15 @@ import { Separator } from '@/components/ui/separator';
 const DetailVacancyCard: React.FC = () => {
   const { lang, t } = useI18nLang();
   const { id } = useParams<{ id: string }>();
-  const { data: vacancy, isPending, isError } = useGetSingleVacancy(id!);
+  const {
+    data: vacancy,
+    isPending,
+    isError,
+  } = useGetSingleVacancy(id!, {
+    queryOpions: {
+      retry: 0,
+    },
+  });
 
   const companyName =
     lang === 'en' ? vacancy?.company_name_en : vacancy?.company_name_ka;

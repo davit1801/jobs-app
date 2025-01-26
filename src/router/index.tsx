@@ -32,7 +32,7 @@ const AppRoutes: React.FC = () => {
               path={ACCOUNT_PATHS.ACCOUNT}
               element={<IsUnauthorizedGuard />}
             >
-              {...ACCOUNT_ROUTES}
+              <Route>{...ACCOUNT_ROUTES}</Route>
             </Route>
           </Route>
           <Route element={<IsAuthorizedGuard />}>{...AUTH_ROUTES}</Route>

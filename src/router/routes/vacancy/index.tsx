@@ -1,10 +1,12 @@
 import IsUnauthorizedGuard from '@/router/guards/is-unauthorized-guard';
+import NotFoundViewLoader from '@/router/routes/not-found';
 import VacancyCreatePageViewLoader from '@/router/routes/vacancy/create';
 import VacancyDetailsPageViewLoader from '@/router/routes/vacancy/details';
 import { VACANCY_PATHS } from '@/router/routes/vacancy/index.enum';
 import { Route } from 'react-router';
 
 export const VACANCY_ROUTES = [
+  <Route index element={<NotFoundViewLoader />} key={VACANCY_PATHS.VACANCY} />,
   <Route element={<IsUnauthorizedGuard />}>
     <Route
       path={VACANCY_PATHS.CREATE}
@@ -15,6 +17,6 @@ export const VACANCY_ROUTES = [
   <Route
     path={':id'}
     element={<VacancyDetailsPageViewLoader />}
-    key={VACANCY_PATHS.VACANCY}
+    key={VACANCY_PATHS.SUNGLE}
   />,
 ];

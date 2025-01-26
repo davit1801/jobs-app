@@ -84,7 +84,9 @@ const MobNavBar: React.FC = () => {
               <SignOutButton />
             ) : (
               <Button asChild className="w-full">
-                <Link to={`/${lang}/${AUTH_PATHS.SIGN_IN}`}>Log in</Link>
+                <Link to={`/${lang}/${AUTH_PATHS.SIGN_IN}`}>
+                  {t('button.login')}
+                </Link>
               </Button>
             )}
           </DropdownMenuItem>

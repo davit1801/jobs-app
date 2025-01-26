@@ -12,19 +12,20 @@ import ProfileAvatar from '@/components/buttons/profile-avatar';
 import useI18nLang from '@/hooks/use-i18n-lang';
 import { VACANCY_PATHS } from '@/router/routes/vacancy/index.enum';
 import { AUTH_PATHS } from '@/router/routes/auth/index.enum';
+import { CirclePlus } from 'lucide-react';
 
 const Header = () => {
   const { lang, t } = useI18nLang();
   const user = useAtomValue(userAtom);
 
   return (
-    <header>
+    <header className="sticky left-0 top-0 z-50 w-full md:static md:px-6">
       <PageContainer>
-        <div className="mt-5 flex items-center justify-between gap-6 rounded-xl bg-card px-4 py-3 text-card-foreground shadow">
+        <div className="flex items-center justify-between gap-6 bg-card px-4 py-3 text-card-foreground shadow md:mt-5 md:rounded-xl">
           <Link to={`/${lang}`}>
             <div className="flex items-center gap-3">
               <BriefcaseBusiness className="h-10 w-10 text-foreground" />
-              <span className="hidden text-foreground [@media(min-width:400px)]:block">
+              <span className="hidden text-foreground lg:block">
                 Jobs Portal
               </span>
             </div>
@@ -34,11 +35,13 @@ const Header = () => {
 
           <div className="flex items-center gap-3">
             {user && (
-              <Button asChild className="hidden md:block">
+              <Button className="hidden md:block">
                 <Link
                   to={`/${lang}/${VACANCY_PATHS.VACANCY}/${VACANCY_PATHS.CREATE}`}
+                  className="flex items-center gap-2"
                 >
-                  {t('button.add-vacancy')}
+                  <CirclePlus />
+                  <span>{t('button.add-vacancy')}</span>
                 </Link>
               </Button>
             )}

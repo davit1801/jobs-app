@@ -2,9 +2,11 @@ import { ACCOUNT_PATHS } from '@/router/routes/account/index.enum';
 import MyVacanciesPageViewLoader from '@/router/routes/account/my-vacancies';
 import ProfilePageViewLoader from '@/router/routes/account/profile';
 import SettingsPageViewLoader from '@/router/routes/account/settings';
+import NotFoundViewLoader from '@/router/routes/not-found';
 import { Route } from 'react-router';
 
 export const ACCOUNT_ROUTES = [
+  <Route index element={<NotFoundViewLoader />} key={ACCOUNT_PATHS.PROFILE} />,
   <Route
     path={ACCOUNT_PATHS.PROFILE}
     element={<ProfilePageViewLoader />}
