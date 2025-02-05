@@ -29,7 +29,7 @@ const useAuth = () => {
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) {
-        setUser(session?.user);
+        setUser(session.user);
         fetchUserProfile(session);
       }
     });
@@ -38,11 +38,12 @@ const useAuth = () => {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
       if (session) {
-        setUser(session?.user);
+        setUser(session.user);
         fetchUserProfile(session);
       } else {
         setUser(null);
         setProfile(null);
+        hasFetchedProfile.current = false;
       }
     });
 

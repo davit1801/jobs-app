@@ -27,7 +27,7 @@ const PagePagination: React.FC<Props> = ({
   const page = parsedSearchParams.page;
   const [activePage, setAcivePage] = useState(+page! || 1);
   const [totalPages, setTotalPages] = useState<number>(
-    vacanciesCount ? Math.ceil(vacanciesCount / 2) : 1,
+    vacanciesCount ? Math.ceil(vacanciesCount / 3) : 1,
   );
 
   useSetSearchParams({
@@ -46,7 +46,7 @@ const PagePagination: React.FC<Props> = ({
   };
 
   useEffect(() => {
-    setTotalPages(vacanciesCount ? Math.ceil(vacanciesCount / 2) : 1);
+    setTotalPages(vacanciesCount ? Math.ceil(vacanciesCount / 3) : 1);
     setAcivePage(+page! || 1);
   }, [vacanciesCount, page]);
 
