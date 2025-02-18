@@ -6,6 +6,6 @@ export const createVacancyFormDefaultValues = {
   work_type: '',
   work_experience: '',
   category: '',
-  salary_start: null,
-  salary_end: null,
+  salary_start: 0,
+  salary_end: 0,
 };

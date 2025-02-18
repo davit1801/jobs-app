@@ -37,10 +37,10 @@ const CustomAlert: React.FC<CustomAlertProps> = ({
           <AlertDialogDescription>{description}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>{calcelText}</AlertDialogCancel>
           <AlertDialogAction onClick={onConfirm}>
             {confirmText}
           </AlertDialogAction>
+          <AlertDialogCancel>{calcelText}</AlertDialogCancel>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

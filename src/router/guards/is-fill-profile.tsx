@@ -11,7 +11,7 @@ const IsFillProfileGuard: React.FC<PropsWithChildren> = ({ children }) => {
   const { lang, t } = useI18nLang();
   const { toast } = useToast();
 
-  if (!profile?.company_name_en && !profile?.company_name_ka) {
+  if (profile && !profile?.company_name_en && !profile?.company_name_ka) {
     toast({
       description: t('toast.error.add-vacancy-guard'),
       variant: 'destructive',
