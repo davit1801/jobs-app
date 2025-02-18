@@ -1,4 +1,4 @@
-import IsUnauthorizedGuard from '@/router/guards/is-unauthorized-guard';
+import IsFillProfileGuard from '@/router/guards/is-fill-profile';
 import NotFoundViewLoader from '@/router/routes/not-found';
 import VacancyCreatePageViewLoader from '@/router/routes/vacancy/create';
 import VacancyDetailsPageViewLoader from '@/router/routes/vacancy/details';
@@ -7,7 +7,7 @@ import { Route } from 'react-router';
 
 export const VACANCY_ROUTES = [
   <Route index element={<NotFoundViewLoader />} key={VACANCY_PATHS.VACANCY} />,
-  <Route element={<IsUnauthorizedGuard />}>
+  <Route element={<IsFillProfileGuard />}>
     <Route
       path={VACANCY_PATHS.CREATE}
       element={<VacancyCreatePageViewLoader />}

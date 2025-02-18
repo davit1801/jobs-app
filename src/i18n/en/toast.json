@@ -15,6 +15,7 @@
     "sign-out": "Failed to sign out.",
     "update-profile": "Failed to update profile, please try again.",
     "update-vacancy": "Failed to update vacancy, please try again.",
-    "update-password": "Failed to update password, please try again."
+    "update-password": "Failed to update password, please try again.",
+    "add-vacancy-guard": "To post a vacancy you first need to fill out a profile"
   }
 }
